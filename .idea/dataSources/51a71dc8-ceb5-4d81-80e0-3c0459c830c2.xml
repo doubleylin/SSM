@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - ssm_mybatis@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="ssm_mybatis">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="casino"/>
+    <schema id="3" name="crm"/>
+    <schema id="4" name="crm1"/>
+    <schema id="5" name="customers"/>
+    <schema id="6" name="Day13SSH"/>
+    <schema id="7" name="day3"/>
+    <schema id="8" name="day6hibernate"/>
+    <schema id="9" name="day7hi"/>
+    <schema id="10" name="day8"/>
+    <schema id="11" name="day9crm"/>
+    <schema id="12" name="information_schema"/>
+    <schema id="13" name="mysql"/>
+    <schema id="14" name="performance_schema"/>
+    <schema id="15" name="school"/>
+    <schema id="16" name="sys"/>
+    <schema id="17" name="users"/>
+    <table id="18" parent="1" name="T_DEPT"/>
+    <column id="19" parent="18" name="depId">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="20" parent="18" name="depName">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <index id="21" parent="18" name="T_DEPT_depId_uindex">
+      <columns>depId</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="22" parent="18" name="PRIMARY">
+      <columns>depId</columns>
+      <primary>1</primary>
+    </key>
+    <key id="23" parent="18" name="T_DEPT_depId_uindex">
+      <columns>depId</columns>
+      <underlying-index>T_DEPT_depId_uindex</underlying-index>
+    </key>
+  </database-model>
+</dataSource>

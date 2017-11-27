@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace就相当于指定映射文件具体是那个接口的实现类-->
+        <mapper namespace="com.lanou3g.dev.dao.DepartmentDao">
+    <!--该文件就相当于dao层接口的实现类
+        id:接口中的某个方法名
+        resultType:对应方法的返回值类型
+        如果返回值类型是集合
+        那么就写集合中元素的类型
+    -->
+    <select id="findAll" resultType="Department">
+      SELECT * FROM T_DEPT;
+    </select>
+
+    <!--根据id查询部门-->
+    <!--
+        前提:select标签只能添加一个parameterType
+        如果参数只有一个并且是简单数据类型(基本数据类型+String)
+        那么在sql语句中使用#{value}占位符,value的名字可以随便写
+    -->
+    <select id="findDeptById"
+            parameterType="int"
+            resultType="Department">
+        SELECT * FROM T_DEPT WHERE depId = #{depId}
+    </select>
+
+
+    <!--添加一个部门-->
+    <insert id="save"
+            parameterType="Department">
+        INSERT INTO T_DEPT VALUES (0,#{depName})
+    </insert>
+
+    <!--修改一个部门-->
+    <update id="update"
+            parameterType="Department">
+        UPDATE T_DEPT SET depName=#{depName} WHERE depId=#{depId}
+    </update>
+    <!--删除一个部门-->
+    <delete id="delete"
+            parameterType="Department">
+        DELETE FROM T_DEPT WHERE depId=#{depId}
+    </delete>
+
+    <!--模糊查询-->
+    <!--
+        如果使用$拼接SQL语句,如果传递参数是简单的数据类型里面必须写value
+        如果是对象则需要写对象属性名字
+    -->
+    <select id="find"
+            resultType="Department">
+        SELECT *FROM T_DEPT WHERE depName LIKE '%${depName}%'
+    </select>
+
+    <!--漏洞查询-->
+    <!--java.long.String
+        别名:string-->
+    <select id="findDeptByIdBug"
+            parameterType="string"
+            resultType="Department">
+        SELECT * FROM T_DEPT WHERE depId = #{value}
+    </select>
+</mapper>
